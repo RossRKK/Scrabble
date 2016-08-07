@@ -38,7 +38,7 @@ public class Board {
 				for (int j = 0; j < backUpBoard.length; j++) {
 				    System.arraycopy(backUpBoard[j], 0, board[j], 0, backUpBoard[0].length);
 				}
-				
+				//return that the process failed
 				return false;
 			}
 			
@@ -53,7 +53,7 @@ public class Board {
 	
 	//return whether a position is filled or matches the letter
 	public static boolean isBlocked(Coord pos, String letter) {
-		return board[pos.x][pos.y] != null || !board[pos.x][pos.y].equalsIgnoreCase(letter);
+		return board[pos.x][pos.y] != null && !board[pos.x][pos.y].equalsIgnoreCase(letter);
 	}
 	
 	//print the board to the console
