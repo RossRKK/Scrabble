@@ -3,7 +3,10 @@ package com.github.rossrkk.scrabble.game;
 import com.github.rossrkk.scrabble.util.Coord;
 
 public class Board {
-	public static Coord[] TW; //location of each triple word
+	public static Coord[] TW= new Coord[]{new Coord(0, 0), new Coord(7, 0), new Coord(14, 0),
+		new Coord(0, 7), new Coord(14, 7),
+		new Coord(0,14), new Coord(7, 14), new Coord(14, 14)}; //location of each triple word
+	
 	public static Coord[] DW; //location of each double word
 	public static Coord[] DL; //location of each double letter
 	public static Coord[] TL; //location of each triple letter
