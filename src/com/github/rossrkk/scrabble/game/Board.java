@@ -14,10 +14,10 @@ public class Board {
 	public static int length = 15; //side length of the board
 	
 	//0,0 is the top left
-	public static String[][] board = new String[length][length]; //saves each letter on the board
+	public static Letter[][] board = new Letter[length][length]; //saves each letter on the board
 	
 	//return the score of a word played
-	public static int getScore(String word, String dir, Coord start) {
+	public static int getScore(Letter[] word, String dir, Coord start) {
 		//TODO actually write this function
 		return 0;
 	}
@@ -25,17 +25,17 @@ public class Board {
 	//add a word to the board
 	public static boolean addToBoard(String word, String dir, Coord start) {
 		//duplicate the board so it can be replaced if the word doesn't fit
-		String [][] backUpBoard = new String[15][15];
+		Letter[][] backUpBoard = new Letter[15][15];
 		for (int i = 0; i < board.length; i++) {
 		    System.arraycopy(board[i], 0, backUpBoard[i], 0, board[0].length);
 		}
 		
 		Coord pos = start;
 		for (int i = 0; i < word.length(); i++) {
-			String letter = word.substring(i, i + 1);
+			char letter = word.charAt(i);
 			//if the space is blank or the same letter (playing over an existing word)
 			if (!isBlocked(pos, letter)) {
-				board[pos.x][pos.y] = letter;
+				board[pos.x][pos.y] = new Letter(letter);
 			} else {
 				//remove the letters from the board as they can't be played
 				for (int j = 0; j < backUpBoard.length; j++) {
@@ -55,8 +55,8 @@ public class Board {
 	}
 	
 	//return whether a position is filled or matches the letter
-	public static boolean isBlocked(Coord pos, String letter) {
-		return board[pos.x][pos.y] != null && !board[pos.x][pos.y].equalsIgnoreCase(letter);
+	public static boolean isBlocked(Coord pos, char val) {
+		return board[pos.x][pos.y] != null && !(board[pos.x][pos.y].value == val);
 	}
 	
 	//print the board to the console
@@ -67,7 +67,7 @@ public class Board {
 			//add each value for x to a string to be printed
 			for (int x = 0; x < length; x++) {
 				if (board[x][y] != null) {
-					out = out + board[x][y];
+					out = out + board[x][y].toDisp;
 				} else {
 					out = out + " "; 
 				}

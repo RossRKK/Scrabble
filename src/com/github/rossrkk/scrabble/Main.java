@@ -5,8 +5,8 @@ import com.github.rossrkk.scrabble.util.Coord;
 
 public class Main {
 	public static void main(String args[]) {
-		Board.addToBoard("Apple", "across", new Coord(0,0));
-		Board.addToBoard("dog", "down", new Coord(2,0));
+		Board.addToBoard("APPLE", "across", new Coord(0,0));
+		Board.addToBoard("PEN", "down", new Coord(2,0));
 		Board.print();
 	}
 	
