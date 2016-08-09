@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Letters {
 	//this class deals with the letters not held by players
-	public static ArrayList letters = new ArrayList();//bad things will happen if anything that isn't a letter goes in this array list
+	public static ArrayList<Letter> letters = new ArrayList<Letter>();//bad things will happen if anything that isn't a letter goes in this array list
 	
 	public static void setup() {
 		//TODO make it so that each letter gets added the correct number of times
@@ -20,7 +20,7 @@ public class Letters {
 		Random ran = new Random();
 		int index = ran.nextInt(letters.size());
 		//selects the letter and removes it
-		Letter out = (Letter) letters.get(index);
+		Letter out = letters.get(index);
 		letters.remove(index);
 		return out;
 	}

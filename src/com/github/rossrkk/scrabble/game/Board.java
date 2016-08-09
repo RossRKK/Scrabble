@@ -20,7 +20,7 @@ public class Board {
 	
 	//return the score of a word played
 	public static int getScore(Letter[] word, String dir, Coord start) {
-		ArrayList wordMult = new ArrayList();
+		ArrayList<Integer> wordMult = new ArrayList<Integer>();
 		int score = 0;
 		//get the score for each letter taking into account double and triple letters
 		Coord pos = start;
