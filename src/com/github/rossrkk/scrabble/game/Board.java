@@ -1,5 +1,7 @@
 package com.github.rossrkk.scrabble.game;
 
+import java.util.ArrayList;
+
 import com.github.rossrkk.scrabble.util.Coord;
 
 public class Board {
@@ -18,8 +20,56 @@ public class Board {
 	
 	//return the score of a word played
 	public static int getScore(Letter[] word, String dir, Coord start) {
-		//TODO actually write this function
-		return 0;
+		ArrayList wordMult = new ArrayList();
+		int score = 0;
+		//get the score for each letter taking into account double and triple letters
+		Coord pos = start;
+		for (int i = 0; i < word.length; i ++) {
+			boolean special = false; //tracks whether the score has been added yet or not
+			for (int j = 0; j < TL.length; j ++) {
+				if (TL[j].x == pos.x && TL[j].y == pos.y) {
+					score += word[i].score * 3;
+					special = true;
+				}
+			}
+			if (!special) {
+				for (int j = 0; j < DL.length; j ++) {
+					if (DL[j].x == pos.x && DL[j].y == pos.y) {
+						score += word[i].score * 2;
+						special = true;
+					}
+				}
+			}
+			
+			if (!special) {
+				score += word[i].score;
+			}
+			
+			//check if we're on a word multiplier
+			for (int j = 0; j < DW.length; j++) {
+				if (DW[j].x == pos.x && DW[j].y == pos.y) {
+					wordMult.add(new Integer(2));
+				}
+			}
+			for (int j = 0; j < TW.length; j++) {
+				if (TW[j].x == pos.x && TW[j].y == pos.y) {
+					wordMult.add(new Integer(3));
+				}
+			}
+			
+			for (int j = 0; j < wordMult.size(); j++) {
+				score = score * ((Integer)wordMult.get(j)).intValue();
+			}
+			
+			//move along
+			if (dir.equalsIgnoreCase("down")) {
+				pos.y ++;
+			} else {
+				pos.x ++;
+			}
+		}
+		
+		return score;
 	}
 	
 	//add a word to the board
