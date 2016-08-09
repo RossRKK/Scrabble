@@ -13,4 +13,9 @@ public class Player {
 			letters.add(Letters.getLetter());
 		}
 	}
+	
+	//a method run when it is this players turn
+	public void turn() {
+		
+	}
 }

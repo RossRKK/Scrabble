@@ -15,14 +15,4 @@ public class Main {
 		}
 		System.out.println(out);
 	}
-	
-	//accept the players input
-	public static void playerGo() {
-		
-	}
-	
-	//run the bot's turn
-	public static void botGo() {
-		
-	}
 }
