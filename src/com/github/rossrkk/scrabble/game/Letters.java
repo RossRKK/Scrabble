@@ -7,10 +7,16 @@ public class Letters {
 	//this class deals with the letters not held by players
 	public static ArrayList<Letter> letters = new ArrayList<Letter>();//bad things will happen if anything that isn't a letter goes in this array list
 	
+	public static int[] dist = new int[]{9, 2, 2, 4, 12, 2, 3, 2, 9, 1, 1, 
+			4, 2, 6, 8, 2, 1, 6, 4, 6, 4, 2, 2, 1, 2, 1};
+	public static char[] chars = new char[]{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
+			'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+	
 	public static void setup() {
-		//TODO make it so that each letter gets added the correct number of times
-		for(int i = 0; i < 26; i++) {
-			letters.add(new Letter('A'));
+		for (int i = 0; i < 26; i++) {
+			for (int j = 0; j < dist[i]; j++) {
+				letters.add(new Letter (chars[i]));
+			}
 		}
 	}
 	
