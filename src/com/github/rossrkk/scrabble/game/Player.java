@@ -7,6 +7,7 @@ import com.github.rossrkk.scrabble.util.Coord;
 
 public class Player {
 	public String name;
+	public int score = 0;
 	
 	public Player(String name) {
 		this.name = name;
@@ -83,6 +84,10 @@ public class Player {
 			} else {
 				System.out.println("The word doesn't fit there. You have lost your turn.");
 			}
+			int score = Board.getScore(word.toUpperCase(), dir, start);
+			this.score += score;
+			System.out.println("You scored " + score + " for this word. Your total score is: " + this.score);
+			
 			Board.print();
 		}
 	}

@@ -9,9 +9,9 @@ public class Board {
 		new Coord(0, 7), new Coord(14, 7),
 		new Coord(0,14), new Coord(7, 14), new Coord(14, 14)}; //location of each triple word
 	
-	public static Coord[] DW; //location of each double word
-	public static Coord[] DL; //location of each double letter
-	public static Coord[] TL; //location of each triple letter
+	public static Coord[] DW = {}; //location of each double word
+	public static Coord[] DL = {}; //location of each double letter
+	public static Coord[] TL = {}; //location of each triple letter
 	
 	public static int length = 15; //side length of the board
 	
@@ -19,30 +19,30 @@ public class Board {
 	public static Letter[][] board = new Letter[length][length]; //saves each letter on the board
 	
 	//return the score of a word played
-	public static int getScore(Letter[] word, String dir, Coord start) {
+	public static int getScore(String word, String dir, Coord start) {
 		ArrayList<Integer> wordMult = new ArrayList<Integer>();
 		int score = 0;
 		//get the score for each letter taking into account double and triple letters
 		Coord pos = start;
-		for (int i = 0; i < word.length; i ++) {
+		for (int i = 0; i < word.length(); i ++) {
 			boolean special = false; //tracks whether the score has been added yet or not
 			for (int j = 0; j < TL.length; j ++) {
 				if (TL[j].x == pos.x && TL[j].y == pos.y) {
-					score += word[i].score * 3;
+					score += new Letter(word.charAt(i)).score * 3;
 					special = true;
 				}
 			}
 			if (!special) {
 				for (int j = 0; j < DL.length; j ++) {
 					if (DL[j].x == pos.x && DL[j].y == pos.y) {
-						score += word[i].score * 2;
+						score += new Letter(word.charAt(i)).score * 2;
 						special = true;
 					}
 				}
 			}
 			
 			if (!special) {
-				score += word[i].score;
+				score += new Letter(word.charAt(i)).score;
 			}
 			
 			//check if we're on a word multiplier
